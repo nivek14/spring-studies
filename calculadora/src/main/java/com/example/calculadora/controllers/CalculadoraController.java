@@ -1,6 +1,7 @@
 package com.example.calculadora.controllers;
 
-import com.example.calculadora.exceptions.UnsupportedMathOperationException;
+import com.example.calculadora.services.OperationsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,64 +9,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/calculadora")
+@RequiredArgsConstructor
 public class CalculadoraController {
+
+    private final OperationsService operations = new OperationsService();
 
     @GetMapping("/sum/{numOne}/{numTwo}")
     public Double sum(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
-        return convertToDouble(numOne) + convertToDouble(numTwo);
+        return operations.sum(numOne,numTwo);
     }
 
     @GetMapping("/sub/{numOne}/{numTwo}")
     public Double sub(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
-        return convertToDouble(numOne) - convertToDouble(numTwo);
+        return operations.sub(numOne,numTwo);
     }
 
     @GetMapping("/mul/{numOne}/{numTwo}")
-    public Double mul(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
-        return convertToDouble(numOne) * convertToDouble(numTwo);
+    public Double mult(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
+        return operations.mult(numOne,numTwo);
     }
 
     @GetMapping("/div/{numOne}/{numTwo}")
     public Double div(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
-        if(Double.parseDouble(numTwo) == 0) throw new Exception();
-        return convertToDouble(numOne) / convertToDouble(numTwo);
+        return operations.div(numOne,numTwo);
     }
 
-    @GetMapping("/avr/{numOne}/{numTwo}")
-    public Double avr(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
-        return (convertToDouble(numOne) + convertToDouble(numTwo)) / 2;
+    @GetMapping("/mean/{numOne}/{numTwo}")
+    public Double mean(@PathVariable String numOne, @PathVariable String numTwo) throws Exception {
+        return operations.mean(numOne,numTwo);
     }
 
     @GetMapping("/sqt/{num}")
-    public Double sqt(@PathVariable String num) throws Exception {
-        return Math.sqrt(convertToDouble(num));
+    public Double sqrt(@PathVariable String num) throws Exception {
+        return operations.sqrt(num);
     }
-
-    private Double convertToDouble(String strNumber) throws Exception {
-
-        if(strNumber == null) throw new Exception();
-
-        String number = strNumber.replaceAll(",", ".");
-
-        if(!isNumeric(number)){
-            throw new UnsupportedMathOperationException("Set numeric value");
-        }
-
-        return Double.parseDouble(strNumber);
-    }
-
-    private boolean isNumeric(String strNumber) {
-
-        if(strNumber == null) return false;
-
-        try{
-            Double.parseDouble(strNumber);
-        }catch (NumberFormatException exception){
-            return false;
-        }
-
-        return true;
-    }
-
 
 }
