@@ -5,10 +5,8 @@ import com.example.simpleSystem.services.PersonServices;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/person")
@@ -27,5 +25,21 @@ public class PersonController {
     public Person findPersonById(@PathVariable String id){
          return personServices.findById(id);
     }
+
+    @PostMapping
+    private Person createPerson(@RequestBody Person person){
+        return personServices.createPerson(person);
+    }
+
+    @PutMapping
+    private Person updatePerson(@RequestBody Person person){
+        return personServices.updatePerson(person);
+    }
+
+    @DeleteMapping("{id}")
+    private ResponseEntity deletePerson(@PathVariable String id){
+        return personServices.deletePerson(id);
+    }
+
 
 }

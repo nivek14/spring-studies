@@ -1,6 +1,7 @@
 package com.example.simpleSystem.services;
 
 import com.example.simpleSystem.domain.Person;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,6 +46,42 @@ public class PersonServices {
         person.setGender("male");
 
         return person;
+    }
+
+    public Person createPerson(Person person){
+
+        logger.info("create one person!");
+
+        Person newPerson = new Person();
+        newPerson.setId(counter.incrementAndGet());
+        newPerson.setFirstName(person.getFirstName());
+        newPerson.setLastName(person.getLastName());
+        newPerson.setAddress(person.getAddress());
+        newPerson.setGender(person.getGender());
+
+        return newPerson;
+    }
+
+    public Person updatePerson(Person person){
+
+        logger.info("update one person!");
+
+        Person newPerson = new Person();
+        newPerson.setId(person.getId());
+        newPerson.setFirstName(person.getFirstName());
+        newPerson.setLastName(person.getLastName());
+        newPerson.setAddress(person.getAddress());
+        newPerson.setGender(person.getGender());
+
+        return newPerson;
+    }
+
+    public ResponseEntity deletePerson(String id){
+
+        logger.info("delete person");
+
+        return ResponseEntity.ok("usuário deletado");
+
     }
 
 }
