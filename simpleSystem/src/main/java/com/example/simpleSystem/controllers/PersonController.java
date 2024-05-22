@@ -24,7 +24,7 @@ public class PersonController {
     }
 
     @GetMapping("{id}")
-    public Optional<Person> findPersonById(@PathVariable String id){
+    public Optional<Person> findPersonById(@PathVariable Long id){
          return personServices.repository.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class PersonController {
     }
 
     @DeleteMapping("{id}")
-    private ResponseEntity deletePerson(@PathVariable String id){
+    private ResponseEntity deletePerson(@PathVariable Long id){
         personServices.repository.deleteById(id);
         return ResponseEntity.ok("Person deleted");
     }
