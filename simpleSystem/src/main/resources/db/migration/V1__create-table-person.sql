@@ -1,0 +1,8 @@
+CREATE TABLE person(
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    gender VARCHAR(255) NOT NULL,
+    created_at DATE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
