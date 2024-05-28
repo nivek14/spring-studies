@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,23 +19,23 @@ public class PersonController {
     @Autowired
     private PersonServices personServices;
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Person> findAllPeople(){
         return personServices.repository.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public Optional<Person> findPersonById(@PathVariable Long id){
          return personServices.repository.findById(id);
     }
 
-    @PostMapping
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     private ResponseEntity createPerson(@RequestBody Person person){
         personServices.repository.save(person);
         return ResponseEntity.ok("Person created");
     }
 
-    @PutMapping
+    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     private ResponseEntity updatePerson(@RequestBody Person person){
         Optional<Person> optionalPerson = personServices.repository.findById(person.getId());
         if(optionalPerson.isPresent()){
