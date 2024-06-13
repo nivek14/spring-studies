@@ -1,6 +1,5 @@
 package com.fcamara1Test.fcamara1Test.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
