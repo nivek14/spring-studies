@@ -48,7 +48,7 @@ public class EstablishmentService {
             establishment.setPhone(establishmentDTO.getPhone());
             establishment.setMotoQuantity(establishmentDTO.getMotoQuantity());
             establishment.setCarsQuantity(establishmentDTO.getCarsQuantity());
-            establishmentRepository.save(establishment);
+            this.establishmentRepository.save(establishment);
             return 1;
         }
         else return 0;

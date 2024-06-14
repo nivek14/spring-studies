@@ -1,4 +1,4 @@
-package com.fcamara1Test.fcamara1Test.dto;
+package com.fcamara1Test.fcamara1Test.dto.vehicles;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
