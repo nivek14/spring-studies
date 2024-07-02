@@ -1,0 +1,9 @@
+CREATE TABLE vehicles(
+    id BIGINT PRIMARY KEY UNIQUE NOT NULL AUTO_INCREMENT,
+    brand VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    color VARCHAR(255) NOT NULL,
+    plate VARCHAR(255) NOT NULL,
+    type VARCHAR(255) NOT NULL,
+    CONSTRAINT vehicles_establishment_id FOREIGN KEY (establishment_id) REFERENCES establishment (id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
