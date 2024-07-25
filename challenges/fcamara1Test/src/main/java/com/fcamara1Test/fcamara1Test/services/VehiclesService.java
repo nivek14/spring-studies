@@ -1,12 +1,11 @@
 package com.fcamara1Test.fcamara1Test.services;
 
-import com.fcamara1Test.fcamara1Test.domain.Establishment;
 import com.fcamara1Test.fcamara1Test.domain.Vehicles;
 import com.fcamara1Test.fcamara1Test.dto.vehicles.VehiclesDTO;
 import com.fcamara1Test.fcamara1Test.dto.vehicles.VehiclesIdDTO;
 import com.fcamara1Test.fcamara1Test.dto.vehicles.VehiclesRequestDTO;
 import com.fcamara1Test.fcamara1Test.dto.vehicles.VehiclesResponseDTO;
-import com.fcamara1Test.fcamara1Test.repositories.VehiclesRepository;
+import com.fcamara1Test.fcamara1Test.domain.repositories.VehiclesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

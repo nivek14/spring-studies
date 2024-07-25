@@ -5,7 +5,7 @@ import com.fcamara1Test.fcamara1Test.dto.establishment.EstablishmentDTO;
 import com.fcamara1Test.fcamara1Test.dto.establishment.EstablishmentIdDTO;
 import com.fcamara1Test.fcamara1Test.dto.establishment.EstablishmentRequestDTO;
 import com.fcamara1Test.fcamara1Test.dto.establishment.EstablishmentResponseDTO;
-import com.fcamara1Test.fcamara1Test.repositories.EstablishmentRepository;
+import com.fcamara1Test.fcamara1Test.domain.repositories.EstablishmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
