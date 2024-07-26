@@ -4,6 +4,5 @@ CREATE TABLE establishment(
     address VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
     moto_quantity VARCHAR(255) NOT NULL,
-    cars_quantity VARCHAR(255) NOT NULL,
-    --CONSTRAINT vehicles_id FOREIGN KEY (vehicle_id) REFERENCES vehicles (id) ON DELETE RESTRICT ON UPDATE CASCADE
+    cars_quantity VARCHAR(255) NOT NULL
 );
