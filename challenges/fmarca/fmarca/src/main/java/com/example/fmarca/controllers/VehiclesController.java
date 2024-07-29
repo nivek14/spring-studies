@@ -1,4 +1,4 @@
-package com.example.fmarca.controllers.controllers;
+package com.example.fmarca.controllers;
 
 
 import com.example.fmarca.dto.vehicles.VehiclesDTO;
@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("vehicle")
+@RequestMapping("/vehicle")
 @RequiredArgsConstructor
 public class VehiclesController {
 
@@ -41,7 +41,7 @@ public class VehiclesController {
     @DeleteMapping
     public ResponseEntity deleteVehicles(@RequestBody VehiclesDTO body){
         this.service.deleteVehicle(body);
-        return ResponseEntity.ok("Estabelecimento deletado");
+        return ResponseEntity.ok("Veiculo deletado");
     }
 
 }

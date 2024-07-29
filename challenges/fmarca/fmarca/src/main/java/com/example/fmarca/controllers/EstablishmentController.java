@@ -1,4 +1,4 @@
-package com.example.fmarca.controllers.controllers;
+package com.example.fmarca.controllers;
 
 import com.example.fmarca.dto.establishment.EstablishmentDTO;
 import com.example.fmarca.dto.establishment.EstablishmentIdDTO;
@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("establishment")
+@RequestMapping("/establishment")
 @RequiredArgsConstructor
 public class EstablishmentController {
 
