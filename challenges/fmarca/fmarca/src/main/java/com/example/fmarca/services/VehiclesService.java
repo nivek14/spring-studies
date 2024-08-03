@@ -23,6 +23,8 @@ public class VehiclesService {
 
     private final EstablishmentService establishmentService;
 
+    private int vehicleOccupied = 0;
+
     public VehiclesResponseDTO getVehicleDetail(Long id){
         Vehicles vehicle = this.getVehicleById(id);
         return new VehiclesResponseDTO(vehicle);
@@ -58,6 +60,7 @@ public class VehiclesService {
         Optional<Vehicles> optional = Optional.ofNullable(this.getVehicleById(vehiclesDTO.getId()));
 
         if(optional.isPresent()){
+
             Vehicles vehicles = new Vehicles();
             vehicles.setId(vehiclesDTO.getId());
             vehicles.setBrand(vehiclesDTO.getBrand());
@@ -85,6 +88,28 @@ public class VehiclesService {
     public Vehicles getVehicleById(Long id){
         Vehicles vehicles = this.vehiclesRepository.getById(id);
         return vehicles;
+    }
+
+    public int updateVehicleSpace(Long id, Integer occupied){
+
+        Optional<Vehicles> optional = Optional.ofNullable(this.getVehicleById(id));
+
+        if(optional.isPresent()){
+
+            Vehicles vehicles = this.getVehicleById(id);
+            vehicles.setId(id);
+            vehicles.setOccupying(occupied);
+
+            Establishment establishment = this.establishmentService.getEstablishmentById(id);
+
+            vehicles.setEstablishment(establishment);
+
+            this.vehiclesRepository.save(vehicles);
+
+            return 1;
+        }
+        else return 0;
+
     }
 
 }

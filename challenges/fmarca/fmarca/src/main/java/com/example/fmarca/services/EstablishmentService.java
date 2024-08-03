@@ -66,4 +66,19 @@ public class EstablishmentService {
         return establishment;
     }
 
+    /*public String getEstablishmentSpaces(Long id, String type, Integer occupiyng, int countedSpaces){
+        if(type.equals("CAR")){
+            Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
+            if(countedSpaces < establishment.getCarsQuantity() && occupiyng == 1){
+
+            }
+            return establishment.getCarsQuantity();
+        }
+        else if(type.equals("MOTO")){
+            Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
+            return establishment.getMotoQuantity();
+        }
+        return "Estacionamento está cheio no momento!";
+    }*/
+
 }

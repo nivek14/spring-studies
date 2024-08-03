@@ -38,6 +38,15 @@ public class VehiclesController {
         else return ResponseEntity.ok("veiculo atualizado...");
     }
 
+    @PutMapping("/{vehicleId}/{occupaied}")
+    public ResponseEntity updateVehiclesSpace(@PathVariable Long vehicleId, @PathVariable Integer occupaied){
+        int response = this.service.updateVehicleSpace(vehicleId, occupaied);
+        if(response == 0){
+            return ResponseEntity.ok("veiculo não encontrado");
+        }
+        else return ResponseEntity.ok("veiculo atualizado...");
+    }
+
     @DeleteMapping
     public ResponseEntity deleteVehicles(@RequestBody VehiclesDTO body){
         this.service.deleteVehicle(body);
