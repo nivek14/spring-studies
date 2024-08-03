@@ -66,6 +66,16 @@ public class EstablishmentService {
         return establishment;
     }
 
+    public int getCarSpaces(Long id){
+        Establishment establishment = this.establishmentRepository.getById(id);
+        return establishment.getCarsQuantity();
+    }
+
+    public int getMotoSpaces(Long id){
+        Establishment establishment = this.establishmentRepository.getById(id);
+        return establishment.getMotoQuantity();
+    }
+
     /*public String getEstablishmentSpaces(Long id, String type, Integer occupiyng, int countedSpaces){
         if(type.equals("CAR")){
             Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
