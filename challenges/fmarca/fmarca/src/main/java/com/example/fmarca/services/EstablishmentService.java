@@ -8,6 +8,7 @@ import com.example.fmarca.dto.establishment.EstablishmentRequestDTO;
 import com.example.fmarca.dto.establishment.EstablishmentResponseDTO;
 import com.example.fmarca.repositories.EstablishmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EstablishmentService {
 
+    @Autowired
     private final EstablishmentRepository establishmentRepository;
 
     public EstablishmentResponseDTO getEstablishmentDetail(Long id){

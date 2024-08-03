@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,5 +36,9 @@ public class Establishment {
 
     @Column(nullable = false, name = "cars_quantity")
     private int carsQuantity;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "establishment")
+    private List<Vehicles> vehicles = new ArrayList<>();
 
 }

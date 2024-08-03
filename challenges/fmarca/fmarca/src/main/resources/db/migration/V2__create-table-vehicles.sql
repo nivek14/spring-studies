@@ -5,6 +5,6 @@ CREATE TABLE vehicles(
   color VARCHAR(255) NOT NULL,
   plate VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
-  establishment_cnpj VARCHAR(100) NOT NULL,
-  FOREIGN KEY (establishment_cnpj) REFERENCES establishment (cnpj)
+  establishment_id BIGINT NOT NULL,
+  FOREIGN KEY (establishment_id) REFERENCES establishment (id)
 );

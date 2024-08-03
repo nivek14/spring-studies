@@ -35,7 +35,7 @@ public class Vehicles {
     private VehiclesType type;
 
     @ManyToOne
-    @JoinColumn(name = "establishment_cnpj", nullable = false)
+    @JoinColumn(name = "establishment_id", nullable = false)
     private Establishment establishment;
 
 }

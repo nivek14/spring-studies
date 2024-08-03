@@ -1,6 +1,7 @@
 package com.example.fmarca.services;
 
 
+import com.example.fmarca.domain.Establishment;
 import com.example.fmarca.domain.Vehicles;
 import com.example.fmarca.dto.vehicles.VehiclesDTO;
 import com.example.fmarca.dto.vehicles.VehiclesIdDTO;
@@ -20,6 +21,8 @@ public class VehiclesService {
     @Autowired
     private final VehiclesRepository vehiclesRepository;
 
+    private final EstablishmentService establishmentService;
+
     public VehiclesResponseDTO getVehicleDetail(Long id){
         Vehicles vehicle = this.getVehicleById(id);
         return new VehiclesResponseDTO(vehicle);
@@ -34,7 +37,14 @@ public class VehiclesService {
         vehicles.setColor(vehiclesRequestDTO.getColor());
         vehicles.setPlate(vehiclesRequestDTO.getPlate());
         vehicles.setType(vehiclesRequestDTO.getType());
-        vehicles.setEstablishment(vehiclesRequestDTO.getEstablishment());
+
+        if (vehiclesRequestDTO.getEstablishment() == null) {
+            throw new IllegalArgumentException("Establishment cannot be null");
+        }
+
+        Establishment establishment = this.establishmentService.getEstablishmentById(vehiclesRequestDTO.getEstablishment().getId());
+
+        vehicles.setEstablishment(establishment);
 
         this.vehiclesRepository.save(vehicles);
 
@@ -54,7 +64,11 @@ public class VehiclesService {
             vehicles.setColor(vehiclesDTO.getColor());
             vehicles.setPlate(vehiclesDTO.getPlate());
             vehicles.setType(vehiclesDTO.getType());
-            vehicles.setEstablishment(vehiclesDTO.getEstablishment());
+
+            Establishment establishment = this.establishmentService.getEstablishmentById(vehiclesDTO.getEstablishment().getId());
+
+            vehicles.setEstablishment(establishment);
+
             this.vehiclesRepository.save(vehicles);
             return 1;
         }
