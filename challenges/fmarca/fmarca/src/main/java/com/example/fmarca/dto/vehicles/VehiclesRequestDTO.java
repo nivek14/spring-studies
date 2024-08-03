@@ -1,5 +1,6 @@
 package com.example.fmarca.dto.vehicles;
 
+import com.example.fmarca.domain.Establishment;
 import com.example.fmarca.domain.VehiclesType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,4 +17,5 @@ public class VehiclesRequestDTO {
     public String color;
     public String plate;
     public VehiclesType type;
+    public Establishment establishment;
 }

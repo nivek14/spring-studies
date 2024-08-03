@@ -8,6 +8,7 @@ import com.example.fmarca.dto.vehicles.VehiclesRequestDTO;
 import com.example.fmarca.dto.vehicles.VehiclesResponseDTO;
 import com.example.fmarca.repositories.VehiclesRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class VehiclesService {
 
+    @Autowired
     private final VehiclesRepository vehiclesRepository;
 
     public VehiclesResponseDTO getVehicleDetail(Long id){
@@ -32,6 +34,7 @@ public class VehiclesService {
         vehicles.setColor(vehiclesRequestDTO.getColor());
         vehicles.setPlate(vehiclesRequestDTO.getPlate());
         vehicles.setType(vehiclesRequestDTO.getType());
+        vehicles.setEstablishment(vehiclesRequestDTO.getEstablishment());
 
         this.vehiclesRepository.save(vehicles);
 
@@ -51,6 +54,7 @@ public class VehiclesService {
             vehicles.setColor(vehiclesDTO.getColor());
             vehicles.setPlate(vehiclesDTO.getPlate());
             vehicles.setType(vehiclesDTO.getType());
+            vehicles.setEstablishment(vehiclesDTO.getEstablishment());
             this.vehiclesRepository.save(vehicles);
             return 1;
         }

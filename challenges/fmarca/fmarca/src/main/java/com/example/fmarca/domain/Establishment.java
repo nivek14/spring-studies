@@ -36,7 +36,4 @@ public class Establishment {
     @Column(nullable = false, name = "cars_quantity")
     private int carsQuantity;
 
-    /*@OneToMany(mappedBy = "establishment", fetch = FetchType.LAZY, orphanRemoval = false)
-    private List<Vehicles> vehiclesList = new ArrayList<>();*/
-
 }

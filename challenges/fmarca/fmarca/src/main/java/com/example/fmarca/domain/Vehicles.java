@@ -34,8 +34,8 @@ public class Vehicles {
     @Enumerated(EnumType.STRING)
     private VehiclesType type;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "establishment.cnpj")
-    private Establishment establishment;*/
+    @ManyToOne
+    @JoinColumn(name = "establishment_cnpj", nullable = false)
+    private Establishment establishment;
 
 }

@@ -22,7 +22,8 @@ public class VehiclesResponseDTO {
                         vehicles.getModel(),
                         vehicles.getColor(),
                         vehicles.getPlate(),
-                        vehicles.getType()
+                        vehicles.getType(),
+                        vehicles.getEstablishment()
                 );
     }
 }
