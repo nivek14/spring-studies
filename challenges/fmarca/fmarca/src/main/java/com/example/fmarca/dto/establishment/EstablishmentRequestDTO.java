@@ -15,4 +15,6 @@ public class EstablishmentRequestDTO {
     public String phone;
     public int motoQuantity;
     public int carsQuantity;
+    public int motoQuantityTotal;
+    public int carsQuantityTotal;
 }

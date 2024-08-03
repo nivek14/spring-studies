@@ -3,6 +3,7 @@ package com.example.fmarca.services;
 
 import com.example.fmarca.domain.Establishment;
 import com.example.fmarca.domain.Vehicles;
+import com.example.fmarca.domain.VehiclesType;
 import com.example.fmarca.dto.vehicles.VehiclesDTO;
 import com.example.fmarca.dto.vehicles.VehiclesIdDTO;
 import com.example.fmarca.dto.vehicles.VehiclesRequestDTO;
@@ -23,7 +24,8 @@ public class VehiclesService {
 
     private final EstablishmentService establishmentService;
 
-    private int vehicleOccupied = 0;
+    private int maxCar = 0;
+    private int maxMoto = 0;
 
     public VehiclesResponseDTO getVehicleDetail(Long id){
         Vehicles vehicle = this.getVehicleById(id);
@@ -38,7 +40,7 @@ public class VehiclesService {
         vehicles.setModel(vehiclesRequestDTO.getModel());
         vehicles.setColor(vehiclesRequestDTO.getColor());
         vehicles.setPlate(vehiclesRequestDTO.getPlate());
-        vehicles.setOccupying(0);
+        vehicles.setOccupying(2);
         vehicles.setType(vehiclesRequestDTO.getType());
 
         if (vehiclesRequestDTO.getEstablishment() == null) {
@@ -90,25 +92,100 @@ public class VehiclesService {
         return vehicles;
     }
 
-    public int updateVehicleSpace(Long id, Integer occupied){
+    public String updateVehicleSpace(Long id, Integer occupied){
 
         Optional<Vehicles> optional = Optional.ofNullable(this.getVehicleById(id));
 
         if(optional.isPresent()){
 
             Vehicles vehicles = this.getVehicleById(id);
-            vehicles.setId(id);
-            vehicles.setOccupying(occupied);
+            Establishment establishment = this.establishmentService.getEstablishmentById(vehicles.getEstablishment().getId());
 
-            Establishment establishment = this.establishmentService.getEstablishmentById(id);
+            maxCar  = this.establishmentService.getCarSpaces(vehicles.getEstablishment().getId());
+            maxMoto = this.establishmentService.getMotoSpaces(vehicles.getEstablishment().getId());
 
-            vehicles.setEstablishment(establishment);
+            System.out.println(establishment.getCarsQuantity());
 
-            this.vehiclesRepository.save(vehicles);
+            if(vehicles.getType().equals(VehiclesType.CAR)){
 
-            return 1;
+                if(occupied == 1 && establishment.getCarsQuantity() != 0 && vehicles.getOccupying() != 1){
+
+                    int aux = establishment.getCarsQuantity() - 1;
+
+                    establishment.setCarsQuantity(aux);
+                    this.establishmentService.updateCarSpaces(establishment.getId(), aux);
+
+                    vehicles.setId(id);
+                    vehicles.setOccupying(occupied);
+                    vehicles.setEstablishment(establishment);
+
+                    this.vehiclesRepository.save(vehicles);
+                    return "Carro estacionado!";
+                }
+                else if(occupied == 0 &&
+                        establishment.getCarsQuantity() < maxCar &&
+                        vehicles.getOccupying() != null &&
+                        vehicles.getOccupying() != 0){
+
+                    int aux = establishment.getCarsQuantity() + 1;
+
+                    establishment.setCarsQuantity(aux);
+
+                    this.establishmentService.updateCarSpaces(establishment.getId(), aux);
+
+                    vehicles.setId(id);
+                    vehicles.setOccupying(occupied);
+                    vehicles.setEstablishment(establishment);
+
+                    this.vehiclesRepository.save(vehicles);
+
+                    return "Carro deixou o estacionamento!";
+                }
+                else return "Houve um problema para validar a situação do estabelecimento em relação a carros.";
+            }
+
+            else if(vehicles.getType().equals(VehiclesType.MOTO)){
+
+                if(occupied == 1 && establishment.getMotoQuantity() != 0 && vehicles.getOccupying() != 1){
+
+                    int aux = establishment.getMotoQuantity() - 1;
+
+                    establishment.setCarsQuantity(aux);
+
+                    this.establishmentService.updateMotoSpaces(establishment.getId(), aux);
+
+                    vehicles.setId(id);
+                    vehicles.setOccupying(occupied);
+                    vehicles.setEstablishment(establishment);
+
+                    this.vehiclesRepository.save(vehicles);
+
+                    return "Moto estacionado!";
+                }
+                else if(occupied == 0 &&
+                        establishment.getMotoQuantity() < maxMoto &&
+                        vehicles.getOccupying() != null &&
+                        vehicles.getOccupying() != 0){
+
+                    int aux = establishment.getMotoQuantity() + 1;
+
+                    establishment.setCarsQuantity(aux);
+
+                    this.establishmentService.updateMotoSpaces(establishment.getId(), aux);
+
+                    vehicles.setId(id);
+                    vehicles.setOccupying(occupied);
+                    vehicles.setEstablishment(establishment);
+
+                    this.vehiclesRepository.save(vehicles);
+
+                    return "Moto deixou o estacionamento!";
+                }
+                else return "Houve um problema para validar a situação do estabelecimento em relação a Motos.";
+            }
+
         }
-        else return 0;
+        return "veiculo não encontrado";
 
     }
 

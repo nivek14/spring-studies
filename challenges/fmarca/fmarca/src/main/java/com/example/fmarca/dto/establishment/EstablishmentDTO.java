@@ -14,4 +14,6 @@ public class EstablishmentDTO {
     private String phone;
     private int motoQuantity;
     private int carsQuantity;
+    private int motoQuantityTotal;
+    private int carsQuantityTotal;
 }

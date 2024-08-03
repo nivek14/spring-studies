@@ -34,6 +34,8 @@ public class EstablishmentService {
         establishment.setPhone(establishmentRequestDTO.phone);
         establishment.setMotoQuantity(establishmentRequestDTO.motoQuantity);
         establishment.setCarsQuantity(establishmentRequestDTO.carsQuantity);
+        establishment.setMotoQuantityTotal(establishmentRequestDTO.motoQuantityTotal);
+        establishment.setCarsQuantityTotal(establishmentRequestDTO.carsQuantityTotal);
 
         this.establishmentRepository.save(establishment);
 
@@ -51,6 +53,8 @@ public class EstablishmentService {
             establishment.setPhone(establishmentDTO.getPhone());
             establishment.setMotoQuantity(establishmentDTO.getMotoQuantity());
             establishment.setCarsQuantity(establishmentDTO.getCarsQuantity());
+            establishment.setMotoQuantityTotal(establishmentDTO.getMotoQuantityTotal());
+            establishment.setCarsQuantityTotal(establishmentDTO.getCarsQuantityTotal());
             this.establishmentRepository.save(establishment);
             return 1;
         }
@@ -68,27 +72,26 @@ public class EstablishmentService {
 
     public int getCarSpaces(Long id){
         Establishment establishment = this.establishmentRepository.getById(id);
-        return establishment.getCarsQuantity();
+        return establishment.getCarsQuantityTotal();
     }
 
     public int getMotoSpaces(Long id){
         Establishment establishment = this.establishmentRepository.getById(id);
-        return establishment.getMotoQuantity();
+        return establishment.getMotoQuantityTotal();
     }
 
-    /*public String getEstablishmentSpaces(Long id, String type, Integer occupiyng, int countedSpaces){
-        if(type.equals("CAR")){
-            Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
-            if(countedSpaces < establishment.getCarsQuantity() && occupiyng == 1){
+    public void updateCarSpaces(Long id, int carsSpaces){
+        Establishment establishment = this.getEstablishmentById(id);
+        establishment.setId(id);
+        establishment.setCarsQuantity(carsSpaces);
+        this.establishmentRepository.save(establishment);
+    }
 
-            }
-            return establishment.getCarsQuantity();
-        }
-        else if(type.equals("MOTO")){
-            Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
-            return establishment.getMotoQuantity();
-        }
-        return "Estacionamento está cheio no momento!";
-    }*/
+    public void updateMotoSpaces(Long id, int motoSpaces){
+        Establishment establishment = this.getEstablishmentById(id);
+        establishment.setId(id);
+        establishment.setMotoQuantity(motoSpaces);
+        this.establishmentRepository.save(establishment);
+    }
 
 }

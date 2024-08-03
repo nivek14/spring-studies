@@ -22,7 +22,9 @@ public class EstablishmentResponseDTO {
                         establishment.getAddress(),
                         establishment.getPhone(),
                         establishment.getMotoQuantity(),
-                        establishment.getCarsQuantity()
+                        establishment.getCarsQuantity(),
+                        establishment.getMotoQuantityTotal(),
+                        establishment.getCarsQuantityTotal()
                 );
     }
 

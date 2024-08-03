@@ -37,8 +37,15 @@ public class Establishment {
     @Column(nullable = false, name = "cars_quantity")
     private int carsQuantity;
 
+    @Column(nullable = false, name = "moto_quantity_total")
+    private int motoQuantityTotal;
+
+    @Column(nullable = false, name = "cars_quantity_total")
+    private int carsQuantityTotal;
+
     @JsonIgnore
     @OneToMany(mappedBy = "establishment")
     private List<Vehicles> vehicles = new ArrayList<>();
+
 
 }
