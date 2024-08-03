@@ -31,6 +31,9 @@ public class Vehicles {
     @Column(nullable = false)
     private String plate;
 
+    @Column(nullable = false)
+    private int occupying;
+
     @Enumerated(EnumType.STRING)
     private VehiclesType type;
 

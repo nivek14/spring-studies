@@ -36,6 +36,7 @@ public class VehiclesService {
         vehicles.setModel(vehiclesRequestDTO.getModel());
         vehicles.setColor(vehiclesRequestDTO.getColor());
         vehicles.setPlate(vehiclesRequestDTO.getPlate());
+        vehicles.setOccupying(0);
         vehicles.setType(vehiclesRequestDTO.getType());
 
         if (vehiclesRequestDTO.getEstablishment() == null) {
@@ -63,6 +64,7 @@ public class VehiclesService {
             vehicles.setModel(vehiclesDTO.getModel());
             vehicles.setColor(vehiclesDTO.getColor());
             vehicles.setPlate(vehiclesDTO.getPlate());
+            vehicles.setOccupying(vehiclesDTO.getOccupying());
             vehicles.setType(vehiclesDTO.getType());
 
             Establishment establishment = this.establishmentService.getEstablishmentById(vehiclesDTO.getEstablishment().getId());

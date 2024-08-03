@@ -4,6 +4,7 @@ CREATE TABLE vehicles(
   model VARCHAR(255) NOT NULL,
   color VARCHAR(255) NOT NULL,
   plate VARCHAR(255) NOT NULL,
+  occupying TINYINT(1) NOT NULL,
   type VARCHAR(255) NOT NULL,
   establishment_id BIGINT NOT NULL,
   FOREIGN KEY (establishment_id) REFERENCES establishment (id)

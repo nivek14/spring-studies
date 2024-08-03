@@ -15,6 +15,7 @@ public class VehiclesDTO {
     private String model;
     private String color;
     private String plate;
+    private int occupying;
     private VehiclesType type;
     private Establishment establishment;
 }
