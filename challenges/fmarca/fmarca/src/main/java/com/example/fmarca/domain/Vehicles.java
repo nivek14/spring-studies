@@ -32,7 +32,7 @@ public class Vehicles {
     private String plate;
 
     @Column(nullable = false)
-    private int occupying;
+    private Integer occupying;
 
     @Enumerated(EnumType.STRING)
     private VehiclesType type;

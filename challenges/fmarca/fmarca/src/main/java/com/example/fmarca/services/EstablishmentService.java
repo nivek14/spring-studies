@@ -61,7 +61,6 @@ public class EstablishmentService {
         this.establishmentRepository.deleteById(establishmentDTO.getId());
     }
 
-    // TODO: Implementar exceção para caso não exista o id
     public Establishment getEstablishmentById(Long id){
         Establishment establishment = this.establishmentRepository.findById(id).orElseThrow(() -> new RuntimeException());
         return establishment;
